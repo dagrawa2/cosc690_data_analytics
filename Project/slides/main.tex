@@ -1,0 +1,166 @@
+\documentclass{beamer}
+\usepackage{amsmath, amsfonts, amssymb}
+%\usepackage{graphicx}
+%\usepackage{pgfplots, pgfplotstable}
+\mode<presentation>
+{\usetheme{boxes}}
+\setbeamertemplate{frametitle}[default][center] 
+
+\usepackage{lmodern, exscale}
+
+%\usepackage{xcolor}
+%\usepackage{tikz}
+%\usetikzlibrary{shapes, arrows}
+
+%\newcommand{\RR}{\mathbb{R}}
+%\newcommand{\eps}{\epsilon}
+%\newcommand{\lmat}{\begin{bmatrix}}
+%\newcommand{\rmat}{\end{bmatrix}}
+%\newcommand{\argmin}{\operatorname{argmin}}
+%\newcommand{\fnn}{f_{\mbox{NN}}}
+%\newcommand{\tilw}{\tilde{w}}
+%\newcommand{\tilW}{\tilde{W}}
+
+\title{Sentiment evolution on important topics from social media}
+\author{Devanshu Agrawal}
+\date{COSC 690}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Motivation}
+\begin{itemize}
+\item Understanding attitudes towards important topics of our time is key to communication.
+\begin{itemize}
+\item Business, politics, art and entertainment, etc.
+\end{itemize}
+\item Questions:
+\begin{itemize}
+\item In what topics of conversation are people most engaged?
+\item How have sentiments on these topics changed, and where are they headed?
+\end{itemize}
+\item We assume social media reflects real attitudes.
+\begin{itemize}
+\item Goal: We address the above questions using a Twitter data set.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Contributions}
+\begin{itemize}
+\item We use latent Dirichlet allocation (LDA) to identify the most important topics of conversation on Twitter in the last five years.
+\item We record the monthly positive-negative sentiment ratio of tweets in each topic based on emojis.
+\item We show that sentiment for each topic exhibits a discernable trend over time and predict future sentiments.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Background and related work}
+\begin{itemize}
+\item Topic modeling.
+\item Latent Dirichlet allocation (LDA).
+\item Sentiment analysis.
+\item Temporal topic-sentiment evolution.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Background and related work (cont.)}
+\begin{itemize}
+\item \textbf{Note to self: } Briefly describe how LDA works.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Methodology: Data}
+\begin{itemize}
+\item We used the Sentiment 140 data set of 1.6 million tweets.
+\item Each tweet is given a sentiment score based on its emoji content.
+\end{itemize}
+\begin{center}
+\textbf{Note to self: } Present first few rows of data set here.
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Methodology: Preprocessing}
+\begin{itemize}
+\item For computational efficiency, we selected a subset of $100,000$ tweets based on the distribution of tweets and sentiments over months.
+\item We preprocessed each tweet (e.g., removed stop words and punctuation).
+\item We trimmed the vocabulary to a manageable size.
+\item We formatted all tweets into a TFIDF matrix.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Methodology: Topic modeling and sentiment analysis}
+\begin{itemize}
+\item We applied LDA to the set of tweets.
+\item We recorded the positive-negative sentiment ratio of tweets in each topic per month.
+\item We performed regression on the sentiments over time and made predictions on the past year.
+\item We compared the predictions to the true sentiments from the past year for evaluation.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results: System environment}
+\begin{itemize}
+\item \textbf{Note to self: } Get Jetstream system information.
+\item We implemented our methodology in the Spark framework.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results: Choosing a subset of data}
+\begin{itemize}
+\item We chose \ldots as our subset of 100,000 tweets.
+\end{itemize}
+\begin{center}
+\textbf{Note to self: } Histograms of tweet count and sentiment.
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results: Key topics}
+\begin{itemize}
+\item We ran LDA with [list parameter values].
+\end{itemize}
+\begin{center}
+\textbf{Note to self: } Figure of key topics (groups of words) along of percentage of tweets in each topic.
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results: Sentiment evolution}
+\begin{itemize}
+\item (Some metric of regression for predicted sentiments).
+\end{itemize}
+\begin{center}
+\textbf{Note to self: } Figure of sentiment over time for each topic.
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Lessons learned and future work}
+\begin{itemize}
+\item We wanted to understand how public sentiment changes on key topics of conversation over time.
+\begin{itemize}
+\item We applied LDA and regression.
+\end{itemize}
+\item Key topics: [list key topics].
+\item Sentiments showed clear trends with [regression fit metric].
+\item Next steps:
+\begin{itemize}
+\item Scale up to all 1.6 million tweets.
+\item How do the key topics change over time?
+\item Can we extract useful information from hashtags?
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}
