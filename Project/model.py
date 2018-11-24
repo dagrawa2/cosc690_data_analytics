@@ -42,9 +42,9 @@ for i, topic_dist in enumerate(topic_word):
 	topic_summaries.append(' '.join(topic_words))
 
 print("Saving topic summaries . . . ")
-with open("results/topics.txt", "w") as fp:
+with open("results/topic_summaries.txt", "w") as fp:
 	for i, words in enumerate(topic_summaries):
 		fp.write("Topic "+str(i+1)+": "+words+"\n")
 
 print("Done!")
-print("Total time: ", np.round((time_time()-t_0)/60, 5), " min")
+print("Total time: ", np.round((time.time()-t_0)/60, 5), " min")

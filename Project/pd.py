@@ -15,8 +15,9 @@ with open("DATA_PATH.txt", "r") as file:
 
 print("Loading data . . . ")
 data = pd.read_csv(DATA_PATH, encoding="latin1", header=None, names=headers, usecols=["target", "date", "text"])
-print("Sampling ", n_tweets, " tweets . . . ")
-data = data.sample(n=n_tweets, random_state=123)
+if n_tweets is not None:
+	print("Sampling ", n_tweets, " tweets . . . ")
+	data = data.sample(n=n_tweets, random_state=123)
 
 print("Processing . . . ")
 data["target"] /= 2
@@ -46,7 +47,7 @@ sents = []
 for i in data_new[:,0]:
 	s = (data[:,-1])[data[:,0]==i]
 	A = np.zeros((len(s), 3))
-	A[:,s] = 1
+	A[np.arange(s.shape[0]),s] = 1
 	sents.append(A.sum(axis=0))
 
 sents = np.stack(sents, axis=0)

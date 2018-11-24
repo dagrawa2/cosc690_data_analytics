@@ -69,4 +69,10 @@ with open("processed_corpus/vocabulary.txt", "w") as fp:
 	for word in vocabulary:
 		fp.write(word+"\n")
 
+print("Saving indices . . . ")
+tokens = np.array(tokens)
+indices = np.arange(tokens.shape[0])
+indices = indices[tokens!=""]
+np.save("Processed_corpus/indices.npy", indices)
+
 print("Done!")
