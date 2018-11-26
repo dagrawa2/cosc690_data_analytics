@@ -4,14 +4,17 @@ matplotlib.use("agg")
 import matplotlib.pyplot as plt
 import utils
 
+# load daily sentiment breakdown by topic and day index
 sent_evol = np.load("results/sent_evol.npy")
 day = sent_evol[:,0]
 sent_evol = sent_evol[:,1:]
 n_topics = sent_evol.shape[1]
 
+# load same colormap that was used in the TSNE plot; load topic names
 colormap = np.load("results/colormap.npy")
 topic_names = utils.load_json("results/topic_names.json")
 
+# plot curves of sentiment evolution for each topic
 print("Plotting . . . ")
 plt.figure()
 for i in range(n_topics):

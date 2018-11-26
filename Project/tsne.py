@@ -8,20 +8,25 @@ import matplotlib
 matplotlib.use("agg")
 import matplotlib.pyplot as plt
 
+# set number of tweets to use for TSNE; and a threshold so that only tweets that have predicted topics with probabilities exceeding the threshold are included in TSNE; this eliminates tweets with ambiguous topic mixtures from the clustering procedure
 n_points = 5000
 threshold = 0
 
 
+# start timer
 t_0 = time.time()
 
+# load document-topic matrix and get number of topics
 X = np.load("results/doc_topic.npy")
 n_topics = X.shape[1]
 
+# restrict tweets to ones whose topic prediction has confidence (probability) exceeding the threshold, and take the first 5000 of these; also get a vector of the predicted topics for the tweets (one topic per tweet)
 idx = np.amax(X, axis=1) > threshold
 X = X[idx]
 X = X[:n_points]
 topics = np.argmax(X, axis=1)
 
+# perform TSNE and project the tweets from topic space to 2D
 print("Performing TSNE . . . ")
 t_1 = time.time()
 tsne_model = TSNE(n_components=2, verbose=1, random_state=0, angle=.99, init='pca')
@@ -36,8 +41,10 @@ for i in range(n_topics):
 colormap = np.array(colormap)
 np.save("results/colormap.npy", colormap)
 
+# load topic names
 topic_names = utils.load_json("results/topic_names.json")
 
+# plot
 print("Plotting . . . ")
 plt.figure()
 for i in range(n_topics):
