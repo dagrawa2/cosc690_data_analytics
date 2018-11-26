@@ -1,0 +1,13 @@
+sh init.sh
+python3 pd.py
+python3 pc.py
+python3 model_ho.py
+python3 heat.py
+python3 model.py
+python3 tsne.py
+python3 sent.py
+python3 sent_plot.py
+python3 sent_evol.py
+python3 sent_evol_plot.py
+python3 nts.py
+python3 et.py
