@@ -3,7 +3,7 @@ title: Sentiment Analysis of Important Topics on Twitter
 author: Devanshu Agrawal
 ---
 
-This README is a guide to reproduce the results presented in "../final_poster". It provides descriptions of the scripts in this directory that need to be run to reproduce the results. Any .py scripts that are not discussed in this README are not important.
+This README is a guide to reproduce the results presented in "./poster". It provides descriptions of the scripts in this directory that need to be run to reproduce the results. Any .py scripts that are not discussed in this README are not important.
 
 # run.sh
 
