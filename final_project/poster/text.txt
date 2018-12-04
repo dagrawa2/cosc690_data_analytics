@@ -1,0 +1,114 @@
+Slide 0:
+Title: Sentiment analysis of important topics on Twitter
+Devanshu Agrawal
+University of Tennessee, Knoxville
+
+
+Slide 1: Introduction
+- Understanding the most important topics of conversation and the public sentiment towards these topics is critical when making decisions that are based on or will affect the public-- e.g., business, policy, education, etc.
+- Social media is a treasure trove of conversations from which such crucial insight might be extracted. A natural question thus arises: Can social media be used to predict public sentiment towards the most important topics of conversation of a given time? 
+- We focus on the social media platform Twitter because of its popularity, openness, and concise messages. We address the following questions:
+	- What are the most important topics of conversation on Twitter based on our collected data?
+	- What is the sentiment towards each of these topics, and how does it change over time?
+
+
+Slide 2:
+Title: Key Contributions
+- We built a topic model based on 1 million tweets and identified 20 key topics ranging from technology to fashion.
+- We computed a sentiment score for each topic based on which emojis appear in the tweets and find that tweets about sickness are most negative while tweets about music are most positive.
+- We found that sentiment follows no daily trend over a course of two months for any topic.
+- We anecdotally observed that the topics assigned to tweets are often incorrect.
+
+
+Slide 3:
+Title: Background
+- Topic modeling is the task of finding groups of related words -- or "topics" -- that best describe the information present in a corpus of documents.
+- Topic models are used to summarize, categorize, and search documents based on topic. They have been applied in content-based recommender systems.
+- The state-of-the-art topic modeling method is latent Dirichlet allocation (LDA), which performs Bayesian inference to discover latent topics in a corpus.
+- Sentiment analysis on topics has been used for various applications such as product opinion mining.
+
+
+Slide 4:
+Title: Methodology: Preprocessing
+- We used the Sentiment-140 data set, which comprises 1.6 million tweets dated between April and June 2009. Each tweet has an associated sentiment of negative, neutral, or positive based on the emojis appearing in the tweet.
+- We used a random subset of 1 million tweets due to limited computational resources.
+- We preprocessed the corpus of tweets by removing all non-alphanumeric characters, words three characters or shorter, common English stop words, words appearing in fewer than 5 tweets, and the top 50 most frequent words.
+
+
+Slide 5:
+Title: Methodology: Latent Dirichlet Allocation
+- We performed LDA on the preprocessed corpus. LDA models every document (tweet) as a mixture of topics and every topic as a mixture of words; thus, the topic is a latent variable that when marginalized out gives a probability model over words.
+- We ran LDA for various values of two hyperparameters: the number of topics and alpha-- which controls the sparsity of the topic mixture of each tweet. Each run involved 500 iterations of collapsed Gibbs sampling. We calculated the log-likelihood of the corpus for each run to find the best set of hyperparameters.
+- We also inspected each topic as a mixture of words and looked at example tweets and their associated topic labels for intuition.
+
+
+Slide 6:
+Title: Methodology: Sentiment
+- We calculated a sentiment score for each topic by the formula
+\[ S(t) = \frac{\sum_{d=1}^D s_d P(t\mid d)}{\sum_{d=1}^D P(t\mid d)}, \]
+where $D$ is the number of documents (tweets), $P(t\mid d)$ is the probability that a word in document $d$ is assigned topic $t$, and $s_d$ is the sentiment of document $d$ (-1, 0, and 1 for negative, neutral, and positive respectively).
+- We also calculated sentiment scores date-wise to see how the scores vary with time.
+
+
+Slide 7:
+Title: Optimal hyperparameters
+- We tested LDA for various numbers of topics and various values of the topic sparsity hyperparameter alpha; lower values of alpha encourage sparser topic mixtures for each tweet.
+- The log-likelihood of the corpus for each run is presented. Larger log-likelihoods indicate a better fit.
+- The largest log-likelihood occurs at 5 topics and alpha = 0.01. But inspecting the topics manually, we found 5 topics to be too few as different topics appeared to be mixed in the same topic. We found 20 topics and alpha = 0.01 to give the most intuitive fit. Subsequent results are based on 20 topics and alpha = 0.01.
+Figure: heat.png
+
+
+Slide 8:
+Title: Clustering of tweets based on topic
+- We used t-distributed stochastic neighbor embedding (t-SNE) to project tweets from 20D topic space to 2D for visualization. 
+- Since we chose alpha = 0.01, each tweet is dominated by one topic. Each cluster of tweets represents one topic.
+- The topics appear to provide good clustering.
+Figure: tsne.png
+
+
+Slide 9:
+Title: Most important topics
+- We listed the top ten most likely words to occur in each of the 20 topics.
+- We chose the topic names manually based on our interpretation of the listed words.
+Figure: topic_summaries_with_names.txt
+
+
+Slide 10:
+Title: Sentiment of each topic
+- We calculated a sentiment score of each topic by taking a topic-weighted average of sentiments over all tweets.
+- Sickness is the most negative topic while music is the most positive.
+- We also calculated daily sentiment scores but found no trends over time and thus do not present them here.
+Figure: sent_dist.png
+
+
+Slide 11:
+Title: Example tweets with predicted topics
+- We observed examples of tweets labeled with seemingly incorrect topics with high probability.
+- This might have resulted in weaker dependence between topics and sentiment.
+Figure: example_tweets.txt
+
+Intuitively correct examples:
+At a wedding. yeah!			Social
+
+want myself a new mac but i dunno when the next time im gonna be able to afford one is			Finance
+
+Firefox and Flock both crashed on an older iMac but still work fine on the new iMac. No new programs. removed and re-loaded no luck			Technology
+
+Intuitively incorrect examples:
+
+In the past month I've spent $100 on eating out. That bums me out so much			Travel
+
+My whole body is so sore  Don't beleive I have to work again when it's so beautiful outside. Bet it's shite weather tomorrow.			Fashion
+
+Hello World... coming to you alive and well from Windows 7... and oooh it looks pretty!			Weather
+
+
+
+Slide 12:
+Title: Conclusions
+- We identified the key topics of conversation on Twitter in 2009 among the users in our data set as well as the average sentiment towards each of these topics.
+- The topics provide good clustering of tweets and reasonable sentiment breakdown, but specific assignment of topics to example tweets can be improved.
+- Next steps:
+	- Why did max log-likelihood not return the most intuitive topics?
+	- How can we improve the topic label assigned to each tweet?
+	- How do the key topics change over years?

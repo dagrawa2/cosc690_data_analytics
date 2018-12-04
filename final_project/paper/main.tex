@@ -1,0 +1,272 @@
+% This is "sig-alternate.tex" V2.1 April 2013
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
+%
+% This example file demonstrates the use of the 'sig-alternate.cls'
+% V2.5 LaTeX2e document class file. It is for those submitting
+% articles to ACM Conference Proceedings WHO DO NOT WISH TO
+% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
+% The 'sig-alternate.cls' file will produce a similar-looking,
+% albeit, 'tighter' paper resulting in, invariably, fewer pages.
+%
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V2.5) produces:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) NO page numbers
+%
+% as against the acm_proc_article-sp.cls file which
+% DOES NOT produce 1) thru' 3) above.
+%
+% Using 'sig-alternate.cls' you have control, however, from within
+% the source .tex file, over both the CopyrightYear
+% (defaulted to 200X) and the ACM Copyright Data
+% (defaulted to X-XXXXX-XX-X/XX/XX).
+% e.g.
+% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
+% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
+%
+% ---------------------------------------------------------------------------------------------------------------
+% This .tex source is an example which *does* use
+% the .bib file (from which the .bbl file % is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission, you *NEED* to 'insert'
+% your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% ================= IF YOU HAVE QUESTIONS =======================
+% Questions regarding the SIGS styles, SIGS policies and
+% procedures, Conferences etc. should be sent to
+% Adrienne Griscti (griscti@acm.org)
+%
+% Technical questions _only_ to
+% Gerald Murray (murray@hq.acm.org)
+% ===============================================================
+%
+% For tracking purposes - this is V2.0 - May 2012
+
+\documentclass{sig-alternate-05-2015}
+
+% my packages
+\usepackage{amsmath}
+%\usepackage{hyperref}
+
+\begin{document}
+
+% Copyright
+\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+% DOI
+\doi{10.475/123_4}
+
+% ISBN
+\isbn{123-4567-24-567/08/06}
+
+%Conference
+\conferenceinfo{PLDI '13}{June 16--19, 2013, Seattle, WA, USA}
+
+\acmPrice{\$15.00}
+
+%
+% --- Author Metadata here ---
+\conferenceinfo{WOODSTOCK}{'97 El Paso, Texas USA}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{Sentiment Analysis of Important Topics on Twitter}
+%\subtitle{[Extended Abstract]}
+%
+% You need the command \numberofauthors to handle the 'placement
+% and alignment' of the authors beneath the title.
+%
+% For aesthetic reasons, we recommend 'three authors at a time'
+% i.e. three 'name/affiliation blocks' be placed beneath the title.
+%
+% NOTE: You are NOT restricted in how many 'rows' of
+% "name/affiliations" may appear. We just ask that you restrict
+% the number of 'columns' to three.
+%
+% Because of the available 'opening page real-estate'
+% we ask you to refrain from putting more than six authors
+% (two rows with three columns) beneath the article title.
+% More than six makes the first-page appear very cluttered indeed.
+%
+% Use the \alignauthor commands to handle the names
+% and affiliations for an 'aesthetic maximum' of six authors.
+% Add names, affiliations, addresses for
+% the seventh etc. author(s) as the argument for the
+% \additionalauthors command.
+% These 'additional authors' will be output/set for you
+% without further effort on your part as the last section in
+% the body of your article BEFORE References or any Appendices.
+
+\numberofauthors{1} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Devanshu Agrawal\\
+       \affaddr{University of Tennessee}\\
+       \affaddr{1331 Circle Park Dr.}\\
+       \affaddr{Knoxville, TN}\\
+       \email{dagrawa2@vols.utk.edu}
+}
+\date{3 December 2018}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+
+%\keywords{Latent Dirichlet Allocation; Sentiment Analysis; Topic modeling; Twitter}
+
+\section{Motivation}
+
+Understanding the most important topics of conversation and the public sentiment towards these topics is critical when making decisions that are based on or will affect the public-- e.g., business, policy, education, etc.
+%
+Social media is a treasure trove of conversations from which such crucial insight might be extracted. A natural question thus arises: Can social media be used to predict public sentiment towards the most important topics of conversation of a given time? 
+%
+We focus on the social media platform Twitter because of its popularity, openness, and concise messages. We address the following questions: What are the most important topics of conversation on Twitter based on our collected data? What is the sentiment towards each of these topics?
+
+\section{Background}
+
+Our work is an application of topic modeling.
+%
+Topic modeling is the task of finding groups of related words -- or "topics" -- that best describe the information present in a corpus of documents.
+%
+Topic models are used to summarize, categorize, and search documents based on topic. They have been applied in content-based recommender systems~\cite{wilson2014improving}.
+%
+The state-of-the-art topic modeling method is latent Dirichlet allocation (LDA), which performs Bayesian inference to discover latent topics in a corpus~\cite{blei2003latent}.
+%
+Sentiment analysis on topics has been used for various applications such as hashtag recommendation~\cite{she2014tomoha}.
+
+\section{Methodology}
+
+We used the Sentiment-140 data set, which comprises 1.6 million tweets dated between April and June 2009~\cite{kaggle}. Each tweet has an associated sentiment score (negative, neutral, or positive) based on the emoticons appearing in the tweet.
+%
+We used a random subset of 1 million tweets due to limited computational resources.
+%
+We preprocessed the corpus of tweets by removing all non-alphabetic characters, words three characters or shorter, common English stop words, words appearing in fewer than 5 tweets, and the top 50 most frequent words.
+
+We used latent Dirichlet allocation (LDA) to perform the topic modeling. We applied LDA on the preprocessed tweets.
+%
+LDA models every document (tweet) as a mixture of topics and every topic as a mixture of words; thus, the topic is a latent variable that when marginalized out gives a probability model over words.
+%
+LDA involves a number of hyperparameters. We focused on two: the number of topics to be found, and $\alpha$-- which controls the sparsity of the topic mixture of each tweet. Lower values of $\alpha$ (in particular, $\alpha \ll 1$) encourage fewer topics to be associated with a tweet.
+
+We calculated a sentiment score for each topic by the formula
+\begin{equation} \label{eq}
+S(t) = \frac{\sum_{d=1}^D s_d P(t\mid d)}{\sum_{d=1}^D P(t\mid d)},
+\end{equation}
+where $D$ is the number of documents (tweets), $P(t\mid d)$ is the probability that a word in document $d$ is assigned topic $t$, and $s_d$ is the sentiment of document $d$ (-1, 0, and 1 for negative, neutral, and positive respectively).
+
+\section{Results}
+
+We ran LDA for various numbers of topics ($5$, $10$, $15$, $20$) and various values of the topic sparsity hyperparameter $\alpha$ ($0.01$, $0.1$, $1.0$).
+%
+We recorded the log-likelihood of the corpus for each run; the best combination of hyperparameter values should produce the greatest log-likelihood.
+%
+We found that the greatest log-likelihood occurs at 5 topics and $\alpha = 0.01$. But inspecting the topics manually, we found 5 topics to be too few as different topics appeared to be mixed in the same topic. We found 20 topics and $\alpha = 0.01$ to give the most intuitive fit. Subsequent results are based on 20 topics and $\alpha = 0.01$.
+
+For each of the 20 topics obtained with LDA, we listed the top ten most probable words to be associated with the topic.
+%
+Each list of ten words indicated a clear topic, and we assigned names to the 20 topics based on our own interpretation of the listed words.
+%
+We present a selected sample of topics and their associated words in Table \ref{table}.
+
+\begin{table}
+\centering
+\caption{\label{table} Selected sample of the 20 most important topics on Twitter based on our sample of tweets. Each topic is a probability distribution over the vocabulary; we list the top ten most probable words in each topic. The topic names are based on our own interpretation of the word mixtures.}
+\begin{tabular}{|c|c|} \hline
+Topic Name & Top Ten Most Probable Words \\ \hline
+%Games & game play lost playing next first fingers year away team \\ \hline
+%Rest & sick feeling everyone goodnight talk soon take hear tired sweet \\ \hline
+Weather & rain weather outside weekend sunny \\
+\quad & raining beautiful cold sunday summer \\ \hline
+%Concerts & show please guys everyone live concert followers awesome amazing tour \\ \hline
+%Finance & check money phone free find soon iphone working stuff give \\ \hline
+Travel & flight went place trip take \\
+\quad & find city plane shopping around \\ \hline
+Music & song listening music awesome amazing \\
+\quad & video cute show songs best \\ \hline
+%Life & life never ever best always things even thing friends hard \\ \hline
+Fashion & hair look wear cute looks \\
+\quad & dress face pretty shoes wearing \\ \hline
+Food & eating food coffee dinner lunch \\
+\quad & chocolate cream made breakfast hungry \\ \hline
+School & exam done exams study class \\
+\quad & studying tired homework hours days \\ \hline
+%Boredom & bored game nite shit tired phone bout talk call damn \\ \hline
+Technology & phone iphone working computer internet \\
+\quad & trying laptop update ipod find \\ \hline
+Social & birthday party friends ready weekend \\
+\quad & best family house dinner baby \\ \hline
+%Twitter & follow thank please tweet following followers tweets help followfriday welcome \\ \hline
+Sickness & sick hurts feeling tired headache \\
+\quad & head sore throat pain woke \\ \hline
+%Movies & movie watch show watched season game awards moon star awesome \\ \hline
+%Future & looking forward next weekend days year summer long monday another \\ \hline
+Problems & house poor room little baby \\
+\quad & went fell left died phone \\ \hline
+%Things & things sure always something read life many keep thing thank \\ \hline
+\end{tabular}
+\end{table}
+
+We calculated a sentiment score of each topic by taking a topic-weighted average of sentiments over all tweets.
+%
+We present the breakdown of sentiment by topic in Figure \ref{fig}.
+%
+Sickness is the most negative topic while music is the most positive.
+
+\begin{figure}
+\centering
+\includegraphics[width=3.5in]{sent_dist.png}
+\caption{\label{fig} Sentiment towards each of the 20 most important topics on Twitter based on our sample of tweets. Each sample tweet was given a sentiment score based on the emoticons in the tweet. The sentiment score of a topic is the average sentiment over all tweets weighted by the contribution of the topic to each tweet. The results agree with intuition; music is the most positive while sickness is most negative.}
+\end{figure}
+
+We observed examples of tweets labeled with seemingly incorrect topics with high probability.
+%
+This might have resulted in weaker dependence between topics and sentiment.
+%
+For example, our model labeled the tweet
+\begin{quote}
+My whole body is so sore  Don't beleive I have to work again when it's so beautiful outside. Bet it's shite weather tomorrow.
+\end{quote}
+with the topic ``fashion'', although ``sickness' or even ``weather'' would have been more appropriate topic labels.
+
+\section{Lessons Learned and Future Work}
+
+We identified the key topics of conversation on Twitter based on our sample of tweets. We also determined the average sentiment towards each of these topics.
+%
+The topics provide good clustering of tweets and reasonable sentiment breakdown, but specific assignments of topics to example tweets often disagree with intuition and can be improved.
+%
+Moreover, maximum log-likelihood did not return the most appropriate number of topics, and we had to select the optimal number of topics by hand.
+%
+For future work, we plan to address the questions: What metric besides log-likelihood provides better hyperparameter optimization for LDA? How can we get an LDA model to assign more intuitive topic mixtures to tweets? How do the most important topics on Twitter vary over time?
+
+
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{abbrv}
+\bibliography{references}
+
+\end{document}
